@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./app/css/main.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+			rel="stylesheet"
+		/>
+		<title>Hệ Diều Hành PTIT</title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="left-zone">
+				<div class="num-process-table">
+					<label for="number-process">Nhập Số Tiến Trình</label>
+					<input type="number" min="1" value="0" />
+				</div>
+
+				<table class="content-table">
+					<thead>
+						<tr>
+							<th>Tiến Trình</th>
+							<th>Thời Điểm Vào</th>
+							<th>Thời Gian Sử Dụng CPU</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="progress-id"></td>
+							<td>
+								<input class="arrival-time" type="number" min="1" value="" />
+							</td>
+							<td>
+								<input class="process-time" type="number" min="1" value="" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="btn-zone">
+					<div class="btn calculate-btn">Calculate</div>
+					<div class="btn reset-btn">Reset</div>
+				</div>
+			</div>
+
+			<div class="right-zone">
+				<main>
+					<div class="section time-section">
+						<div class="title-block">Thời Gian</div>
+
+						<div class="content">
+							<div class="time-line">
+								<div class="time-marker"></div>
+							</div>
+
+							<ul class="time-tooltips"></ul>
+						</div>
+					</div>
+					<div class="section">
+						<div class="title-block">Sử Dụng CPU</div>
+						<div class="content">
+							<div class="cpu"></div>
+						</div>
+					</div>
+					<div class="section time-line">
+						<div class="title-block">Hàng Chờ</div>
+
+						<div class="content">
+							<div class="stacks"></div>
+						</div>
+					</div>
+					<table class="content-table waiting-time-table"></table>
+				</main>
+			</div>
+		</div>
+		<script src="./app/js/fifo.js"></script>
+	</body>
+</html>

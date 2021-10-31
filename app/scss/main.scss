@@ -1,0 +1,313 @@
+@import './reset';
+
+$primary-color: #009879;
+
+* {
+	font-family: 'Roboto', sans-serif;
+}
+
+@mixin box-shadow {
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+}
+
+.wrapper {
+	width: 100vw;
+	height: 100vh;
+	padding: 50px;
+	position: relative;
+	display: flex;
+}
+
+.num-process-table {
+	display: flex;
+	flex-direction: column;
+	max-width: 150px;
+
+	@include box-shadow;
+
+	label {
+		padding: 8px;
+		background-color: $primary-color;
+		text-align: center;
+	}
+
+	input {
+		border: 1px solid transparent;
+		border-bottom: 2px solid $primary-color;
+		padding: 8px;
+
+		&:focus {
+			outline: unset;
+			border: solid 1px $primary-color;
+		}
+	}
+}
+
+.content-table {
+	border-collapse: collapse;
+
+	font-size: 0.9em;
+	min-width: 400px;
+	overflow: hidden;
+	@include box-shadow;
+	thead {
+		tr {
+			background-color: #009879;
+			color: #ffffff;
+			text-align: left;
+			font-weight: bold;
+		}
+
+		th {
+			padding: 8px;
+		}
+	}
+
+	tbody {
+		tr {
+			border-bottom: 1px solid #dddddd;
+
+			&:nth-of-type(even) {
+				background-color: #f3f3f3;
+				td {
+					input {
+						background-color: #f3f3f3;
+					}
+				}
+			}
+			&:last-of-type {
+				border-bottom: 2px solid #009879;
+			}
+
+			.progress-id {
+				text-align: center;
+			}
+		}
+	}
+
+	td {
+		padding: 0;
+		input {
+			width: 100%;
+			border: 1px solid transparent;
+			padding: 8px;
+			&:focus {
+				outline: unset;
+				border: solid 1px rgba($primary-color, 0.5);
+			}
+		}
+	}
+}
+
+.btn-zone {
+	display: flex;
+	gap: 10px;
+	.btn {
+		padding: 10px;
+		width: 80px;
+		text-align: center;
+		@include box-shadow;
+		cursor: pointer;
+		transition: 0.5s ease;
+
+		&:active {
+			box-shadow: unset;
+			transform: translateY(2px);
+		}
+	}
+	.calculate-btn {
+		background-color: aqua;
+	}
+
+	.reset-btn {
+		background-color: tomato;
+	}
+}
+
+td {
+	border-right: 1px solid #dddddd;
+}
+
+.left-zone {
+	width: 50%;
+	height: 100%;
+	position: relative;
+
+	display: flex;
+	flex-direction: column;
+	row-gap: 40px;
+	&::after {
+		content: '';
+		position: absolute;
+		width: 1px;
+		height: 100%;
+		background-color: $primary-color;
+		top: 0;
+		right: -5%;
+	}
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	row-gap: 36px;
+}
+
+.right-zone {
+	width: 100%;
+	padding-left: 50px;
+	.title-block {
+		min-width: 100px;
+
+		font-size: 14px;
+
+		padding: 8px;
+		background-color: $primary-color;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: bold;
+		color: white;
+
+		@include box-shadow;
+	}
+
+	.section {
+		width: 100%;
+		display: flex;
+
+		.content {
+			position: relative;
+			margin-left: 40px;
+			display: flex;
+			align-items: flex-end;
+			flex: 1;
+			.time-line {
+				position: relative;
+				margin: 0;
+				width: 100%;
+
+				height: 6px;
+				background: #d3d3d3;
+				outline: none;
+				opacity: 0.7;
+				-webkit-transition: 0.2s;
+				transition: opacity 0.2s;
+
+				.time-marker {
+					width: 12px;
+					height: 6px;
+					background-color: $primary-color;
+					cursor: pointer;
+					clip-path: polygon(51% 100%, 0 0, 100% 0);
+					position: relative;
+					bottom: 6px;
+					transform: translateX(-50%);
+					&.animation {
+						animation: toRight 13s linear forwards;
+					}
+				}
+			}
+
+			.cpu {
+				width: 100%;
+				height: 100%;
+				border: 1px solid $primary-color;
+				position: relative;
+				.process {
+					height: 28px;
+					position: absolute;
+					&-content {
+						width: 0;
+						height: 100%;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						color: transparent;
+						animation: runProcess linear forwards;
+					}
+				}
+			}
+
+			.stacks {
+				width: 100%;
+				height: 100%;
+				border-bottom: 2px solid $primary-color;
+				display: flex;
+				.process {
+					position: relative;
+					width: 50px;
+					height: 100%;
+					border-style: solid;
+					border-color: $primary-color;
+					border-left-width: 2px;
+					border-right-width: 2px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					color: white;
+				}
+			}
+		}
+	}
+
+	.content-table {
+		min-width: 0;
+		width: 400px;
+		max-width: 100%;
+
+		td {
+			text-align: center;
+			padding: 10px;
+		}
+
+		.AWT {
+			background-color: wheat;
+			color: $primary-color;
+			border-top: 2px solid rgba(51, 51, 51, 0.5);
+			font-weight: bold;
+		}
+	}
+}
+
+.time-tooltips {
+	width: 100%;
+	position: absolute;
+	display: flex;
+	justify-content: space-between;
+
+	.time-tooltip {
+		position: relative;
+		.line {
+			width: 1px;
+			height: 6px;
+			background-color: $primary-color;
+		}
+
+		.number {
+			position: absolute;
+			left: 0;
+			transform: translateX(-50%);
+		}
+	}
+}
+
+@keyframes toRight {
+	from {
+		left: 0;
+	}
+	to {
+		left: 100%;
+	}
+}
+
+@keyframes runProcess {
+	from {
+		width: 0;
+		color: transparent;
+	}
+	to {
+		width: 100%;
+		color: white;
+	}
+}
