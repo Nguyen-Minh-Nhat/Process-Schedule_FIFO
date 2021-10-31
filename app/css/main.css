@@ -149,7 +149,6 @@ input {
 .content-table {
   border-collapse: collapse;
   font-size: 0.9em;
-  min-width: 400px;
   overflow: hidden;
   -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
           box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);

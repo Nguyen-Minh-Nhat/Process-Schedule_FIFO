@@ -46,9 +46,7 @@ $primary-color: #009879;
 
 .content-table {
 	border-collapse: collapse;
-
 	font-size: 0.9em;
-	min-width: 400px;
 	overflow: hidden;
 	@include box-shadow;
 	thead {
