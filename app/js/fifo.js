@@ -17,6 +17,8 @@ const timeLine = $('.time-line');
 
 const timeToolTips = $('.time-tooltips');
 
+const cpu = $('.cpu');
+
 function Process(name, arrivalTime, processTime, waitTime, color) {
 	this.name = name;
 	this.arrivalTime = arrivalTime;
@@ -181,16 +183,20 @@ const app = {
 
 	activeTimeLine(totalTimeAllProcess) {
 		let html = '';
-
+		let totalTimeAllProcessRounded = Math.ceil(totalTimeAllProcess);
+		console.log(totalTimeAllProcessRounded);
 		for (let i = 0; i < totalTimeAllProcess + 1; i++) {
 			html += `<li class="time-tooltip">
 									<div class="line"></div>
 									<div class="number">${i}</div>
 								</li>`;
 		}
-
+		let timeLineUseWidth =
+			totalTimeAllProcess / (totalTimeAllProcessRounded / 100);
+		const timeLineUse = $('.time-line-use');
+		timeLineUse.style.width = `${timeLineUseWidth}%`;
+		cpu.style.width = `${timeLineUseWidth}%`;
 		timeToolTips.innerHTML = html;
-
 		timeMarker.classList.add('animation');
 		timeMarker.style.animationDuration = `${totalTimeAllProcess}s`;
 	},

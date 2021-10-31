@@ -349,19 +349,23 @@ main {
           animation: toRight 13s linear forwards;
 }
 
-.right-zone .section .content .cpu {
+.right-zone .section .content .cpu-full {
   width: 100%;
   height: 100%;
   border: 1px solid #009879;
+}
+
+.right-zone .section .content .cpu-full .cpu {
+  height: 100%;
   position: relative;
 }
 
-.right-zone .section .content .cpu .process {
+.right-zone .section .content .cpu-full .cpu .process {
   height: 28px;
   position: absolute;
 }
 
-.right-zone .section .content .cpu .process-content {
+.right-zone .section .content .cpu-full .cpu .process-content {
   width: 0;
   height: 100%;
   display: -webkit-box;
