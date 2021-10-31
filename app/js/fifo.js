@@ -1,23 +1,15 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
-
 const contentTable = $('.content-table');
-
 const inputNumOfProcess = $('.num-process-table  input');
-
 const contentTableBody = contentTable.querySelector('tbody');
-
 const calculateBtn = $('.calculate-btn');
-
 const resetBtn = $('.reset-btn');
-
 const timeMarker = $('.time-marker');
-
 const timeLine = $('.time-line');
-
 const timeToolTips = $('.time-tooltips');
-
 const cpu = $('.cpu');
+const waitTimeTable = $('.waiting-time-table');
 
 function Process(name, arrivalTime, processTime, waitTime, color) {
 	this.name = name;
@@ -66,7 +58,6 @@ const app = {
 	},
 
 	createTableAWT() {
-		const table = document.querySelector('.waiting-time-table');
 		let html = `<thead>
 							<tr>
 								<th>Tiến Trình</th>
@@ -86,11 +77,7 @@ const app = {
 								<td>${app.calAWT()}</td>
 							</tr>`;
 
-		table.innerHTML = html;
-	},
-
-	createProcess(name, arrivalTime, processTime) {
-		return new Process(name, arrivalTime, processTime);
+		waitTimeTable.innerHTML = html;
 	},
 
 	createProcessList() {
@@ -218,8 +205,8 @@ const app = {
 	compare(a, b) {
 		let arrivalTimeA = a.arrivalTime;
 		let arrivalTimeB = b.arrivalTime;
-
 		let comparison = 0;
+
 		if (arrivalTimeA > arrivalTimeB) {
 			comparison = 1;
 		} else if (arrivalTimeA < arrivalTimeB) {
@@ -228,10 +215,18 @@ const app = {
 		return comparison;
 	},
 
+	resetRightZone() {
+		app.processList = [];
+		cpu.innerHTML = '';
+		waitTimeTable.innerHTML = '';
+		timeMarker.classList.remove('animation');
+		timeToolTips.innerHTML = '';
+	},
+
 	handleEvent(numOfProcess) {
 		calculateBtn.onclick = () => {
 			if (numOfProcess) {
-				app.processList = [];
+				app.resetRightZone();
 				app.createProcessList(numOfProcess);
 				app.processList.sort(app.compare);
 				let totalTimeAllProcess = app.totalTimeAllProcess();
@@ -246,8 +241,8 @@ const app = {
 
 		resetBtn.onclick = () => {
 			inputNumOfProcess.value = 0;
-			app.processList = [];
 			app.createContentTable(0);
+			app.resetRightZone();
 		};
 
 		inputNumOfProcess.onkeypress = (e) => {
