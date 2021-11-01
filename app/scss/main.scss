@@ -7,13 +7,16 @@ $primary-color: #009879;
 }
 
 @mixin box-shadow {
-	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+	box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body {
+	background-color: white;
 }
 
 .wrapper {
-	width: 90vw;
+	width: 100vw;
 	height: 100vh;
-	padding: 50px 0px;
 	position: relative;
 	display: flex;
 	margin: 0 auto;
@@ -58,10 +61,11 @@ $primary-color: #009879;
 	border-collapse: collapse;
 	font-size: 0.9em;
 	overflow: hidden;
+	background-color: white;
 	@include box-shadow;
 	thead {
 		tr {
-			background-color: #009879;
+			background-color: $primary-color;
 			color: #ffffff;
 			text-align: left;
 			font-weight: bold;
@@ -90,7 +94,7 @@ $primary-color: #009879;
 				}
 			}
 			&:last-of-type {
-				border-bottom: 2px solid #009879;
+				border-bottom: 2px solid $primary-color;
 			}
 
 			.progress-id {
@@ -135,21 +139,25 @@ td {
 }
 
 .left-zone {
-	width: 50%;
+	padding: 40px 20px;
+	padding-left: 40px;
+	width: 40%;
 	height: 100%;
 	position: relative;
-
 	display: flex;
 	flex-direction: column;
 	row-gap: 40px;
+
+	background-color: rgba(41, 39, 39, 0.1);
 	&::after {
 		content: '';
 		position: absolute;
-		width: 1px;
+		width: 4px;
 		height: 100%;
 		background-color: $primary-color;
 		top: 0;
-		right: -5%;
+		right: 0;
+		transform: translateX(50%);
 	}
 }
 
@@ -160,8 +168,10 @@ main {
 }
 
 .right-zone {
+	padding: 40px;
 	width: 100%;
-	padding-left: 50px;
+	padding-left: 20px;
+	padding-right: 40px;
 	.title-block {
 		min-width: 100px;
 
@@ -211,6 +221,10 @@ main {
 					transform: translateX(-50%);
 					&.animation {
 						animation: toRight 13s linear forwards;
+					}
+
+					&.reset-time-line {
+						right: 0;
 					}
 				}
 			}
@@ -314,6 +328,12 @@ main {
 	}
 }
 
+@keyframes toLeft {
+	to {
+		right: 100%;
+	}
+}
+
 @keyframes runProcess {
 	from {
 		width: 0;
@@ -327,6 +347,7 @@ main {
 
 /* CSS */
 .button-30 {
+	border-radius: 4px;
 	align-items: center;
 	appearance: none;
 	background-color: #fcfcfd;
@@ -363,4 +384,25 @@ main {
 .button-30:active {
 	box-shadow: #d6d6e7 0 3px 7px inset;
 	transform: translateY(2px);
+}
+
+.my-info {
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+	background-color: white;
+	padding: 8px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
+	border-radius: 4px;
+
+	border-bottom: 3px solid $primary-color;
+	max-width: 300px;
+
+	.title {
+		color: $primary-color;
+		font-weight: bold;
+		display: inline-block;
+		width: 100px;
+		margin-right: 10px;
+	}
 }

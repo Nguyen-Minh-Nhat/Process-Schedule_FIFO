@@ -5,11 +5,11 @@ const inputNumOfProcess = $('.num-process-table  input');
 const contentTableBody = contentTable.querySelector('tbody');
 const calculateBtn = $('.calculate-btn');
 const resetBtn = $('.reset-btn');
-const timeMarker = $('.time-marker');
 const timeLine = $('.time-line');
 const timeToolTips = $('.time-tooltips');
 const cpu = $('.cpu');
 const waitTimeTable = $('.waiting-time-table');
+const timeLineUse = $('.time-line-use');
 
 function Process(name, arrivalTime, processTime, waitTime, color) {
 	this.name = name;
@@ -183,7 +183,8 @@ const app = {
 		}
 		let timeLineUseWidth =
 			totalTimeAllProcess / (totalTimeAllProcessRounded / 100);
-		const timeLineUse = $('.time-line-use');
+		timeLineUse.innerHTML = '<div class="time-marker"></div>';
+		let timeMarker = $('.time-marker');
 		timeLineUse.style.width = `${timeLineUseWidth}%`;
 		cpu.style.width = `${timeLineUseWidth}%`;
 		timeToolTips.innerHTML = html;
@@ -221,7 +222,7 @@ const app = {
 		app.processList = [];
 		cpu.innerHTML = '';
 		waitTimeTable.innerHTML = '';
-		timeMarker.classList.remove('animation');
+		timeLineUse.innerHTML = '';
 		timeToolTips.innerHTML = '';
 	},
 
