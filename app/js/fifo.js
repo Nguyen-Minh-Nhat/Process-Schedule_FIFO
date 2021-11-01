@@ -218,6 +218,12 @@ const app = {
 		return comparison;
 	},
 
+	checkInput() {
+		return app.processList.every((process) => {
+			return process.arrivalTime >= 0 && process.processTime >= 0;
+		});
+	},
+
 	resetRightZone() {
 		app.processList = [];
 		cpu.innerHTML = '';
@@ -231,14 +237,17 @@ const app = {
 			if (numOfProcess) {
 				app.resetRightZone();
 				app.createProcessList(numOfProcess);
-				app.processList.sort(app.compare);
-				let totalTimeAllProcess = app.totalTimeAllProcess();
-				app.activeTimeLine(totalTimeAllProcess);
-				app.createProcessInCpu(totalTimeAllProcess);
-				setTimeout(() => {
-					app.createTableAWT();
-				}, totalTimeAllProcess * 1000);
-				app.FIFO();
+				let isValid = app.checkInput();
+				if (isValid) {
+					app.processList.sort(app.compare);
+					let totalTimeAllProcess = app.totalTimeAllProcess();
+					app.activeTimeLine(totalTimeAllProcess);
+					app.createProcessInCpu(totalTimeAllProcess);
+					setTimeout(() => {
+						app.createTableAWT();
+					}, totalTimeAllProcess * 1000);
+					app.FIFO();
+				} else alert('Dữ liệu nhập vào phải lớn hơn hoặc bằng 0 !!!');
 			} else alert('Vui Lòng Nhập Số Lượng Tiến Trình');
 		};
 
