@@ -142,10 +142,13 @@ const app = {
 	totalTimeAllProcess() {
 		let totalTime = 0;
 		app.processList.forEach((process) => {
-			process.waitTime =
+			let waitTime =
 				totalTime - process.arrivalTime > 0
 					? totalTime - process.arrivalTime
 					: 0;
+
+			process.waitTime = Math.round(waitTime * 100) / 100;
+
 			if (totalTime == 0) {
 				totalTime += process.arrivalTime + process.processTime;
 			} else if (process.arrivalTime > totalTime && totalTime != 0) {
@@ -194,8 +197,7 @@ const app = {
 				app.stacks.push(process);
 				app.createProcessInStack();
 				setTimeout(() => {
-					let processShifted = app.stacks.shift();
-					timeWait = processShifted.processTime;
+					app.stacks.shift();
 					app.createProcessInStack();
 				}, process.waitTime * 1000);
 			}, process.arrivalTime * 1000);

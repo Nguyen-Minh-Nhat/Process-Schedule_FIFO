@@ -21,21 +21,31 @@ $primary-color: #009879;
 
 .num-process-table {
 	display: flex;
-	flex-direction: column;
-	max-width: 150px;
+	max-width: 220px;
+	height: 40px;
 
 	@include box-shadow;
 
 	label {
-		padding: 8px;
+		flex: 1;
+		padding: 4px;
 		background-color: $primary-color;
-		text-align: center;
+
+		color: white;
+		font-weight: bold;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	input {
+		width: 55px;
 		border: 1px solid transparent;
 		border-bottom: 2px solid $primary-color;
 		padding: 8px;
+		text-align: right;
+		font-size: 16px;
+		font-weight: 500;
 
 		&:focus {
 			outline: unset;
@@ -59,13 +69,18 @@ $primary-color: #009879;
 
 		th {
 			padding: 8px;
+			text-align: center;
 		}
 	}
 
 	tbody {
 		tr {
 			border-bottom: 1px solid #dddddd;
-
+			td {
+				input {
+					text-align: center;
+				}
+			}
 			&:nth-of-type(even) {
 				background-color: #f3f3f3;
 				td {
@@ -105,14 +120,6 @@ $primary-color: #009879;
 		padding: 10px;
 		width: 80px;
 		text-align: center;
-		@include box-shadow;
-		cursor: pointer;
-		transition: 0.5s ease;
-
-		&:active {
-			box-shadow: unset;
-			transform: translateY(2px);
-		}
 	}
 	.calculate-btn {
 		background-color: aqua;
@@ -263,6 +270,10 @@ main {
 			padding: 10px;
 		}
 
+		th {
+			text-align: center;
+		}
+
 		.AWT {
 			background-color: wheat;
 			color: $primary-color;
@@ -312,4 +323,44 @@ main {
 		width: 100%;
 		color: white;
 	}
+}
+
+/* CSS */
+.button-30 {
+	align-items: center;
+	appearance: none;
+	background-color: #fcfcfd;
+	border-width: 0;
+	box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+		rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+	color: #36395a;
+	cursor: pointer;
+	display: inline-flex;
+	justify-content: center;
+	line-height: 1;
+	list-style: none;
+	overflow: hidden;
+	position: relative;
+	transition: box-shadow 0.15s, transform 0.15s;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	white-space: nowrap;
+	will-change: box-shadow, transform;
+}
+
+.button-30:focus {
+	box-shadow: #d6d6e7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+		rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+}
+
+.button-30:hover {
+	box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
+		rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+	transform: translateY(-2px);
+}
+
+.button-30:active {
+	box-shadow: #d6d6e7 0 3px 7px inset;
+	transform: translateY(2px);
 }

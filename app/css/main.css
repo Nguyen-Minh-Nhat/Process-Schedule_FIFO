@@ -120,25 +120,39 @@ input {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  max-width: 150px;
+  max-width: 220px;
+  height: 40px;
   -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
           box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
 }
 
 .num-process-table label {
-  padding: 8px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 4px;
   background-color: #009879;
-  text-align: center;
+  color: white;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .num-process-table input {
+  width: 55px;
   border: 1px solid transparent;
   border-bottom: 2px solid #009879;
   padding: 8px;
+  text-align: right;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .num-process-table input:focus {
@@ -163,10 +177,15 @@ input {
 
 .content-table thead th {
   padding: 8px;
+  text-align: center;
 }
 
 .content-table tbody tr {
   border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr td input {
+  text-align: center;
 }
 
 .content-table tbody tr:nth-of-type(even) {
@@ -211,18 +230,6 @@ input {
   padding: 10px;
   width: 80px;
   text-align: center;
-  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
-          box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  -webkit-transition: 0.5s ease;
-  transition: 0.5s ease;
-}
-
-.btn-zone .btn:active {
-  -webkit-box-shadow: unset;
-          box-shadow: unset;
-  -webkit-transform: translateY(2px);
-          transform: translateY(2px);
 }
 
 .btn-zone .calculate-btn {
@@ -422,6 +429,10 @@ main {
   padding: 10px;
 }
 
+.right-zone .content-table th {
+  text-align: center;
+}
+
 .right-zone .content-table .AWT {
   background-color: wheat;
   color: #009879;
@@ -495,5 +506,62 @@ main {
     width: 100%;
     color: white;
   }
+}
+
+/* CSS */
+.button-30 {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: #fcfcfd;
+  border-width: 0;
+  -webkit-box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+          box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+  color: #36395a;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  position: relative;
+  -webkit-transition: -webkit-box-shadow 0.15s, -webkit-transform 0.15s;
+  transition: -webkit-box-shadow 0.15s, -webkit-transform 0.15s;
+  transition: box-shadow 0.15s, transform 0.15s;
+  transition: box-shadow 0.15s, transform 0.15s, -webkit-box-shadow 0.15s, -webkit-transform 0.15s;
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+}
+
+.button-30:focus {
+  -webkit-box-shadow: #d6d6e7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+          box-shadow: #d6d6e7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+}
+
+.button-30:hover {
+  -webkit-box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+          box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+
+.button-30:active {
+  -webkit-box-shadow: #d6d6e7 0 3px 7px inset;
+          box-shadow: #d6d6e7 0 3px 7px inset;
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
 }
 /*# sourceMappingURL=main.css.map */
