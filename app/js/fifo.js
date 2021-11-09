@@ -36,10 +36,9 @@ const colorList = [
 
 const app = {
 	processList: [],
-	stacks: [],
+	queue: [],
 	createContentTable(numOfProcess) {
 		let html = '';
-
 		for (var i = 0; i < numOfProcess; i++) {
 			html += `<tr data-id="${i}" >
 							<td class="progress-id"> P${i + 1}</td>
@@ -64,19 +63,16 @@ const app = {
 								<th>Thời Gian Chờ</th>
 							</tr>
 						</thead>`;
-
 		app.processList.forEach((process) => {
 			html += `<tr>
 								<td class="progress-id">${process.name}</td>
 								<td>${process.waitTime}</td>
 							</tr>`;
 		});
-
 		html += `<tr class="AWT">
 								<td class="title">Thời Gian Chờ Trung Bình</td>
 								<td>${app.calAWT()}</td>
 							</tr>`;
-
 		waitTimeTable.innerHTML = html;
 	},
 
@@ -128,15 +124,15 @@ const app = {
 		cpu.innerHTML = html;
 	},
 
-	createProcessInStack() {
-		const stacks = $('.stacks');
+	updateProcessInQueue() {
+		const queue = $('.queue');
 		let html = '';
-		app.stacks.forEach((process) => {
+		app.queue.forEach((process) => {
 			html += `	<div class="process" style="background-color: ${process.color}">
       ${process.name}</div>`;
 		});
 
-		stacks.innerHTML = html;
+		queue.innerHTML = html;
 	},
 
 	totalTimeAllProcess() {
@@ -195,11 +191,11 @@ const app = {
 	FIFO() {
 		app.processList.forEach((process) => {
 			setTimeout(() => {
-				app.stacks.push(process);
-				app.createProcessInStack();
+				app.queue.push(process);
+				app.updateProcessInQueue();
 				setTimeout(() => {
-					app.stacks.shift();
-					app.createProcessInStack();
+					app.queue.shift();
+					app.updateProcessInQueue();
 				}, process.waitTime * 1000);
 			}, process.arrivalTime * 1000);
 		});
