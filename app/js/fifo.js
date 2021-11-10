@@ -98,7 +98,7 @@ const app = {
 		let prePosition = 0;
 		const cpu = $('.cpu');
 		let html = '';
-		app.processList.forEach((process, index) => {
+		app.processList.forEach((process) => {
 			if (prePosition < process.arrivalTime) {
 				position = process.arrivalTime;
 				prePosition = process.arrivalTime;
@@ -145,9 +145,10 @@ const app = {
 
 			process.waitTime = Math.round(waitTime * 100) / 100;
 
-			if (totalTime == 0) {
-				totalTime += process.arrivalTime + process.processTime;
-			} else if (process.arrivalTime > totalTime && totalTime != 0) {
+			if (
+				totalTime == 0 ||
+				(process.arrivalTime > totalTime && totalTime != 0)
+			) {
 				totalTime = process.arrivalTime + process.processTime;
 			} else {
 				totalTime += process.processTime;
@@ -188,19 +189,6 @@ const app = {
 		timeMarker.style.animationDuration = `${totalTimeAllProcess}s`;
 	},
 
-	FIFO() {
-		app.processList.forEach((process) => {
-			setTimeout(() => {
-				app.queue.push(process);
-				app.updateProcessInQueue();
-				setTimeout(() => {
-					app.queue.shift();
-					app.updateProcessInQueue();
-				}, process.waitTime * 1000);
-			}, process.arrivalTime * 1000);
-		});
-	},
-
 	compare(a, b) {
 		let arrivalTimeA = a.arrivalTime;
 		let arrivalTimeB = b.arrivalTime;
@@ -212,6 +200,19 @@ const app = {
 			comparison = -1;
 		}
 		return comparison;
+	},
+
+	FIFO() {
+		app.processList.forEach((process) => {
+			setTimeout(() => {
+				app.queue.push(process);
+				app.updateProcessInQueue();
+				setTimeout(() => {
+					app.queue.shift();
+					app.updateProcessInQueue();
+				}, process.waitTime * 1000);
+			}, process.arrivalTime * 1000);
+		});
 	},
 
 	checkInput() {
