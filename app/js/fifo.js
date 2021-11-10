@@ -245,10 +245,10 @@ const app = {
 					let totalTimeAllProcess = app.totalTimeAllProcess();
 					app.activeTimeLine(totalTimeAllProcess);
 					app.createProcessInCpu(totalTimeAllProcess);
+					app.FIFO();
 					setTimeout(() => {
 						app.createTableAWT();
 					}, totalTimeAllProcess * 1000);
-					app.FIFO();
 				} else alert('Dữ liệu nhập vào phải lớn hơn hoặc bằng 0 !!!');
 			} else alert('Vui Lòng Nhập Số Lượng Tiến Trình');
 		};
