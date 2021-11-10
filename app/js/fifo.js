@@ -230,8 +230,13 @@ const app = {
 	},
 
 	handleEvent(numOfProcess) {
+		inputNumOfProcess.oninput = () => {
+			numOfProcess = inputNumOfProcess.value;
+			app.createContentTable(numOfProcess);
+		};
+
 		calculateBtn.onclick = () => {
-			if (numOfProcess) {
+			if (numOfProcess > 0) {
 				app.resetRightZone();
 				app.createProcessList(numOfProcess);
 				let isValid = app.checkInput();
@@ -253,14 +258,8 @@ const app = {
 			app.createContentTable(0);
 			app.resetRightZone();
 		};
-
-		inputNumOfProcess.onkeypress = (e) => {
-			if (e.keyCode === 13) {
-				numOfProcess = inputNumOfProcess.value;
-				app.createContentTable(numOfProcess);
-			}
-		};
 	},
+
 	start() {
 		let numOfProcess = 0;
 		app.handleEvent(numOfProcess);
