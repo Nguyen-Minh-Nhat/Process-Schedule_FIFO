@@ -77,6 +77,7 @@ const app = {
 	},
 
 	createProcessList() {
+		let isValid = true;
 		let trELs = contentTableBody.querySelectorAll('tr');
 		trELs.forEach((el, index) => {
 			let arrivalTimeEl = el.querySelector('.arrival-time');
@@ -84,6 +85,7 @@ const app = {
 			let nameProcess = `P${index + 1}`;
 			let arrivalTime = parseFloat(arrivalTimeEl.value);
 			let processTime = parseFloat(processTimeEl.value);
+			if (arrivalTime < 0 || processTime < 0) isValid = false;
 			let color;
 			if (index < colorList.length) color = colorList[index];
 			else color = colorList[index + 1 - colorList.length - 1];
@@ -91,6 +93,7 @@ const app = {
 				new Process(nameProcess, arrivalTime, processTime, '', color)
 			);
 		});
+		return isValid;
 	},
 
 	createProcessInCpu(totalTimeAllProcess) {
@@ -214,13 +217,6 @@ const app = {
 			}, process.arrivalTime * 1000);
 		});
 	},
-
-	checkInput() {
-		return app.processList.every((process) => {
-			return process.arrivalTime >= 0 && process.processTime >= 0;
-		});
-	},
-
 	resetRightZone() {
 		app.processList = [];
 		cpu.innerHTML = '';
@@ -238,8 +234,7 @@ const app = {
 		calculateBtn.onclick = () => {
 			if (numOfProcess > 0) {
 				app.resetRightZone();
-				app.createProcessList(numOfProcess);
-				let isValid = app.checkInput();
+				let isValid = app.createProcessList(numOfProcess);
 				if (isValid) {
 					app.processList.sort(app.compare);
 					let totalTimeAllProcess = app.totalTimeAllProcess();
