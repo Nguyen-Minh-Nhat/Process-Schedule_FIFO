@@ -41,17 +41,21 @@ const app = {
 		let html = '';
 		for (var i = 0; i < numOfProcess; i++) {
 			html += `<tr data-id="${i}" >
-							<td class="progress-id"> P${i + 1}</td>
-							<td><input class="arrival-time" type="number" min="1" value="${i}" /></td>
-							<td><input  class="process-time" type="number" min="1" value="1" /></td>
-						</tr>`;
+                <td class="progress-id"> P${i + 1}</td>
+                <td><input class="arrival-time"
+                type="number" min="1" value="${i}" /></td>
+                <td><input  class="process-time"
+                type="number" min="1" value="1" /></td>
+					  	</tr>`;
 		}
 		if (!numOfProcess) {
 			html = `<tr data-id="" >
-							<td class="progress-id"></td>
-							<td><input class="arrival-time" type="number" min="1" value="" /></td>
-							<td><input  class="process-time" type="number" min="1" value="" /></td>
-						</tr>`;
+                <td class="progress-id"></td>
+                <td><input class="arrival-time"
+                type="number" min="1" value="" /></td>
+                <td><input  class="process-time"
+                type="number" min="1" value="" /></td>
+              </tr>`;
 		}
 		contentTableBody.innerHTML = html;
 	},
@@ -93,6 +97,7 @@ const app = {
 				new Process(nameProcess, arrivalTime, processTime, '', color)
 			);
 		});
+
 		return isValid;
 	},
 
@@ -113,15 +118,16 @@ const app = {
 			html += `<div
 								class="process"
 								style="width: ${process.processTime / onePercent}%; 
-			}; left: ${position / onePercent}%"
+			          }; left: ${position / onePercent}%"
 								>
                 <div
 										class="process-content"
-										style="background-color: ${process.color}; animation-duration:${
-				process.processTime
-			}s; animation-delay: ${position}s"
-									>${process.name}</div>
-                  </div>`;
+										style="background-color: ${process.color}; 
+                    animation-duration:${
+											process.processTime
+										}s; animation-delay: ${position}s"
+									  >${process.name}</div>
+                </div>`;
 		});
 
 		cpu.innerHTML = html;
@@ -131,8 +137,10 @@ const app = {
 		const queue = $('.queue');
 		let html = '';
 		app.queue.forEach((process) => {
-			html += `	<div class="process" style="background-color: ${process.color}">
-      ${process.name}</div>`;
+			html += `	<div class="process" 
+                  style="background-color: ${process.color}">
+                  ${process.name}
+                </div>`;
 		});
 
 		queue.innerHTML = html;
